@@ -1,42 +1,55 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseLayout from "../layouts/BaseLayout.astro";
+const featuredProject = {
+  title: "Girls Education Initiative",
+  description:
+    "A community-driven effort to expand educational opportunities for girls in underserved communities in India."
+};
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-                Welcome to the official home page of Nandika Trivedi, a rising senior in MUSD (Milpitas High School).
-            </p>
-            <p>
-                Student • Education Advocate • Community Builder
-			</p>
-            <p>
-                I am passionate about expanding educational opportunities
-                for girls in underserved communities and building initiatives
-                that create measurable impact.
-			</p>
-			<p>Featured Project:</p>
-			<ul>
-                <li>Girls Education Initiative <code>src/pages/index.astro</code></li>
-                <li>View Projects <code>src/pages/projects/<code></li>
-                <li>Check out the blog posts in <code>src/content/blog/</code></li>
-                <li>Download Resume <code>src/pages/resume/<code></li> 
-			</ul>
-			<p>
-                Have fun! And read more here ...
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title="Home | Nandika Trivedi">
+  <h1>Nandika Trivedi</h1>
+
+  <p>
+    Student • Education Advocate • Community Builder
+  </p>
+
+  <p>
+    Building initiatives focused on improving educational access for girls in underserved communities.
+  </p>
+
+  <p>
+    I am passionate about creating opportunities for young women through
+    education, leadership, and community engagement.
+  </p>
+
+  <p>
+    <a href="/projects/girls-education">Featured Project</a> |
+    <a href="/resume">Resume</a> |
+    <a href="/blog">Blog</a>
+  </p>
+
+  <section>
+      <h2>Selected Work</h2>
+
+      <article>
+          <h3>{featuredProject.title}</h3>
+          <p>{featuredProject.description}</p>
+      </article>
+
+      <article>
+          <h3>Research & Academic Projects</h3>
+          <p>
+          Independent learning, academic exploration, and research initiatives.
+          </p>
+      </article>
+
+      <article>
+          <h3>Leadership & Service</h3>
+          <p>
+          School, community, and volunteer leadership experiences.
+          </p>
+      </article>
+  </section>
+</BaseLayout>
 
