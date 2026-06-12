@@ -1,34 +1,20 @@
 ---
-const posts = [
-  {
-    title: "What I Learned From My First Workshop",
-    slug: "first-workshop"
-  },
-  {
-    title: "Why Measuring Impact Matters",
-    slug: "measuring-impact"
-  }
-];
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
-<html lang="en">
-<head>
-  <title>Blog</title>
-</head>
+<BaseLayout title="Blog | Nandika Trivedi">
+  <h1>Blog</h1>
 
-<body>
-  <main>
-    <h1>Blog</h1>
-
-    <ul>
-      {posts.map(post => (
-        <li>
-          <a href={`/blog/${post.slug}`}>
-            {post.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </main>
-</body>
-</html>
+  <ul>
+    {posts.map(post => (
+      <li>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
