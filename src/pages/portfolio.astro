@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import placeholder1 from '../assets/Genes.png';
+import placeholder2 from '../assets/blog-placeholder-2.jpg';
+import placeholder3 from '../assets/blog-placeholder-3.jpg';
+import placeholder4 from '../assets/blog-placeholder-4.jpg';
+import placeholder5 from '../assets/blog-placeholder-5.jpg';
+import placeholderAbout from '../assets/blog-placeholder-about.jpg';
+
+const pieces = [
+  { src: placeholder1, title: 'Gene Editing', medium: 'Digital' },
+  { src: placeholder2, title: 'Untitled 2', medium: 'Watercolor on paper' },
+  { src: placeholder3, title: 'Untitled 3', medium: 'Digital' },
+  { src: placeholder4, title: 'Untitled 4', medium: 'Pencil on paper' },
+  { src: placeholder5, title: 'Untitled 5', medium: 'Digital' },
+  { src: placeholderAbout, title: 'Untitled 6', medium: 'Ink on paper' },
+];
+---
+
+<BaseLayout title="Portfolio | Nandika Trivedi">
+  <h1>Portfolio</h1>
+  <p class="intro">A collection of digital and traditional artwork.</p>
+
+  <div class="masonry">
+    {pieces.map(piece => (
+      <figure class="piece">
+        <Image src={piece.src} alt={piece.title} widths={[400, 700]} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
+        <figcaption>
+          <span class="piece-title">{piece.title}</span>
+          <span class="piece-medium">{piece.medium}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .masonry {
+    columns: 3 220px;
+    column-gap: 1.25rem;
+  }
+
+  .piece {
+    break-inside: avoid;
+    margin: 0 0 1.25rem 0;
+    background: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .piece img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+  }
+
+  figcaption {
+    padding: 0.6rem 0.75rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .piece-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #111;
+  }
+
+  .piece-medium {
+    font-size: 0.78rem;
+    color: #777;
+  }
+</style>
